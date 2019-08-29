@@ -28,7 +28,7 @@ node('master') {
     input "Please confirm for Deployment?"
 
     stage("DeployToServers"){
-      deployWithAnsible(this)
+      DeployWithAnsible(this)
     }
 
     stage('Notifications'){
