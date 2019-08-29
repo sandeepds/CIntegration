@@ -1,5 +1,5 @@
 node('master') {
     stage('pull') {
-        scmCheckout(this)
+        gitCheckout(this)
     }
 }
