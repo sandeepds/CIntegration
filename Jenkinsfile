@@ -20,8 +20,8 @@ node('master') {
     }
     stage('Docker Image') { 
       PushDockerImage(this)
-        sh "sudo docker build -t sandeepds2002/petclinic ."
-        sh "sudo docker push sandeepds2002/petclinic"
+      //sh "sudo docker build -t sandeepds2002/petclinic ."
+      //sh "sudo docker push sandeepds2002/petclinic"
     }
     //stage("Docker compose"){
          //sh "sudo docker-compose up -d --build"
