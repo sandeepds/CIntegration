@@ -26,9 +26,14 @@ node('master') {
     }
 
     input "Please confirm for Deployment?"
-
+  
+    stage("DockerCompose"){
+      DockerComposeBuild(this)
+    }
+    
     stage("DeployToServers"){
       DeployWithAnsible(this)
+      //sh "sudo docker-compose up -d --build"
     }
 
     stage('Notifications'){
@@ -42,7 +47,4 @@ node('master') {
                   subject: "Build: ${env.JOB_NAME} - Failed", 
                   body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
     }
-    //stage("Docker compose"){
-         //sh "sudo docker-compose up -d --build"
-    //}  
 }
