@@ -9,7 +9,13 @@ library(
 )
 
 node('master') {
-    stage('pull') {
+    stage('Git-Checkout') {
         gitCheckout(this)
+    }
+    stage('Sonarqube-scan'){
+      SonarQube(this)
+    }
+    stage('Build Stage'){
+      BuildWithM3(this)
     }
 }
