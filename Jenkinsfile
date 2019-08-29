@@ -9,6 +9,7 @@ library(
 )
 
 node('master') {
+  try{
     stage('Git-Checkout') {
         gitCheckout(this)
     }
@@ -22,6 +23,24 @@ node('master') {
       PushDockerImage(this)
       //sh "sudo docker build -t sandeepds2002/petclinic ."
       //sh "sudo docker push sandeepds2002/petclinic"
+    }
+
+    input "Please confirm for Deployment?"
+
+    stage("DeployToServers"){
+      deployWithAnsible(this)
+    }
+
+    stage('Notifications'){
+      mail to: 'sandeepds2002@gmail.com', from: 'sandeepds2002@gmail.com',
+                  subject: "Build: ${env.JOB_NAME} - Success", 
+                  body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
+    }
+   }
+   catch(Exception e) {
+      mail to: 'sandeepds2002@gmail.com', from: 'sandeepds2002@gmail.com',
+                  subject: "Build: ${env.JOB_NAME} - Failed", 
+                  body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
     }
     //stage("Docker compose"){
          //sh "sudo docker-compose up -d --build"
