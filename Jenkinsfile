@@ -3,7 +3,7 @@ library(
   retriever: modernSCM(
     [
       $class: 'GitSCMSource',
-      remote: 'https://github.com/sandeepds/SHLibrary.git'
+      remote: 'https://github.com/sandeepds/SharedLibraries.git'
     ]
   )
 )
