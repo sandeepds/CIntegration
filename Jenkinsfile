@@ -15,9 +15,9 @@ node('master') {
     stage('Git-Checkout') {
         gitCheckout(this)
     }
-    stage('Sonarqube-scan'){
-      SonarQube(this)
-    }
+    //stage('Sonarqube-scan'){
+      //SonarQube(this)
+    //}
     stage('Build Stage'){
       //mvnHome = tool 'M3'
       //BuildWithM3(this, mvnHome)
