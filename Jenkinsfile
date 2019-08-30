@@ -15,16 +15,16 @@ node('master') {
     stage('Git-Checkout') {
         gitCheckout(this)
     }
-    //stage('Sonarqube-scan'){
-      //SonarQube(this)
-    //}
-    //stage('Build Stage'){
+    stage('Sonarqube-scan'){
+      SonarQube(this)
+    }
+    stage('Build Stage'){
       //mvnHome = tool 'M3'
       //BuildWithM3(this, mvnHome)
       //BuildWithM3(this)
       //uncomment below one
-      //BuildWithM3(this, 'M3')
-    //}
+      BuildWithM3(this, 'M3')
+    }
     stage('Docker Image') { 
       PushDockerImage(this)
       //sh "sudo docker build -t sandeepds2002/petclinic ."
