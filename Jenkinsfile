@@ -8,7 +8,7 @@ library(
   )
 )
 
-def mvnHome = tool 'M3'
+//def mvnHome = tool 'M3'
 
 node('master') {
   try{
@@ -19,7 +19,10 @@ node('master') {
       SonarQube(this)
     }
     stage('Build Stage'){
-      BuildWithM3(this, mvnHome)
+      //mvnHome = tool 'M3'
+      //BuildWithM3(this, mvnHome)
+      //BuildWithM3(this)
+      BuildWithM3(this, 'M3')
     }
     stage('Docker Image') { 
       PushDockerImage(this)
