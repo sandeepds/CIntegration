@@ -45,7 +45,7 @@ node('master') {
     stage('Notifications'){
       mail to: 'sandeepds2002@gmail.com', from: 'sandeepds2002@gmail.com',
                   subject: "Build: ${env.JOB_NAME} - Success", 
-                  body: "Job Success - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
+                  body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
     }
    }
    catch(Exception e) {
