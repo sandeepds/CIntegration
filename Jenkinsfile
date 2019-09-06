@@ -8,6 +8,22 @@ library(
   )
 )
 
+def lastSuccessfulBuildID = 0
+    
+//Check for Previous-Successful-Build
+stage('Get Last Successful Build Number'){
+    def build = currentBuild.previousBuild
+    while (build != null) {
+        if (build.result == "SUCCESS")
+        {
+            lastSuccessfulBuildID = build.id as Integer
+            break
+        }
+        build = build.previousBuild
+    }
+    echo "${lastSuccessfulBuildID}"
+}
+
 //def mvnHome = tool 'M3'
 node('master') {
   try{
@@ -37,7 +53,7 @@ node('master') {
     }
     
     stage("DeployThroughAnisble"){
-      DeployWithAnsible(this)
+      DeployWithAnsible(this, lastSuccessfulBuildID)
       //sh "sudo docker-compose up -d --build"
     }
 
