@@ -53,7 +53,7 @@ node('master') {
     }
     
     stage("DeployThroughAnisble"){
-      DeployWithAnsible(this, lastSuccessfulBuildID)
+      DeployWithAnsible(this)
       //sh "sudo docker-compose up -d --build"
     }
 
