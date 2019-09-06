@@ -9,7 +9,6 @@ library(
 )
 
 //def mvnHome = tool 'M3'
-
 node('master') {
   try{
     stage('Git-Checkout') {
